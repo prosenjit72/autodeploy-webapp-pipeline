@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager</title>
+    <style>
+        body { font-family: Arial; max-width: 500px; margin: 50px auto; padding: 20px; }
+        .server-info { background: #eef; padding: 8px; border-radius: 5px; font-size: 13px; }
+        li { background: #f4f4f4; padding: 10px; margin: 5px 0; border-radius: 5px; display: flex; justify-content: space-between; }
+        ul { list-style: none; padding: 0; }
+        a { color: red; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h1>📝 Task Manager</h1>
+    <div class="server-info">🖥️ Served by: {{ hostname }}</div>
+
+    <form action="/add" method="POST">
+        <input type="text" name="task" placeholder="New task..." required>
+        <button type="submit">Add</button>
+    </form>
+
+    <ul>
+        {% for task in tasks %}
+        <li>
+            {{ task[1] }}
+            <a href="/delete/{{ task[0] }}">❌</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
