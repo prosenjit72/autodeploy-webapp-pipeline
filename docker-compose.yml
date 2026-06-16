@@ -13,7 +13,7 @@ services:
       - app_network
 
   app:
-    image: taskmanager-image
+    build: ./app
     volumes:
       - ./app/data:/app/data
     deploy:

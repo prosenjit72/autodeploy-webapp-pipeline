@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 import sqlite3
+import os
 ##Python এর built-in database library, যা lightweight এবং serverless, self-contained, 
 # এবং zero-configuration database eর জন্য ব্যবহৃত হয়। 
 import socket 
@@ -7,7 +8,7 @@ import socket
 ## আমরা একটা না, একাধিক container এ এই app চালাবো (horizontal scaling), তখন দেখতে চাইবো — প্রতিবার page refresh করলে কোন container request handle করছে। এটা scaling বোঝার জন্য খুব ভালো একটা visual indicator।
 app = Flask(__name__)
 ##আমার Flask application শুরু হলো, এর নাম app
-DB_NAME = "tasks.db"
+DB_NAME = os.path.join("data","tasks.db")
 def init_db():
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
